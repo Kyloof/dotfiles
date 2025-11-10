@@ -7,4 +7,5 @@ return {
 	{ import = "plugins.ui" },
 	{ import = "plugins.notetaking" },
 	{ import = "plugins.ui.themes" },
+	--	{ import = "plugins.dev" },
 }

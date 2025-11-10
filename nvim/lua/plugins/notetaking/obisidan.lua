@@ -38,6 +38,10 @@ return {
 				name = "dailies",
 				path = "~/Notes/dailies",
 			},
+			{
+				name = "electronics",
+				path = "~/Notes/electronics",
+			},
 		},
 		ui = {
 			enable = false,
