@@ -6,23 +6,21 @@ zle_highlight=('paste:none')
 
 # completions
 source $ZDOTDIR/completion.zsh
-
 fpath=(~/.zsh/zsh-completions/src $fpath)
 
 
+export DOTNET_ROOT=/snap/dotnet-runtime-90/current
+emulate sh -c 'source /etc/profile'
 
-# source aliases
-source "$ZDOTDIR/aliases"
+# aliases
+source "$ZDOTDIR/aliases.zsh"
 
-# directories stack
-setopt AUTO_PUSHD           # push the current directory visited on the stack.
-setopt PUSHD_IGNORE_DUPS    # do not store duplicates in the stack.
-setopt PUSHD_SILENT         # do not print the directory stack after pushd or popd.
+# prompt
+source "$ZDOTDIR/prompt.zsh"
 
 # enable Vi mode
 bindkey -v
 export KEYTIMEOUT=1
-
 
 # source functions.zsh
 source "$ZDOTDIR/functions.zsh"
