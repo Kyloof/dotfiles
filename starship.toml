@@ -1,0 +1,137 @@
+# Nordic-darker color palette
+#2e3440	user
+#3b4252	dir
+#434c5e	git
+#4c566a	version
+#5e81ac	doc (from dracula color palette)
+
+# ---------------------------------------------------------------
+format = """
+[░▒▓](#4e4637)\
+$username\
+[](fg:#444838 bg:#384a3d)\
+$directory\
+[](fg:#384a3d bg:#2e4b47)\
+$git_branch\
+$git_status\
+[](fg:#2e4b47 bg:#294a51)\
+$c\
+$python\
+$elixir\
+$elm\
+$golang\
+$haskell\
+$java\
+$julia\
+$nodejs\
+$nim\
+$rust\
+$scala\
+$docker_context\
+[](#294a51)\
+
+\n
+$character\
+"""
+
+[line_break]
+disabled = false
+
+[username]
+show_always = true
+style_user = "bg:#444838"
+style_root = "bg:#444838"
+format = '[ $user ]($style)'
+disabled = false
+
+
+[directory]
+style = "bg:#384a3d"
+format = "[ $path ]($style)"
+truncation_length = 3
+truncation_symbol = "…/"
+
+[directory.substitutions]
+"Documents" = " "
+"Downloads" = " "
+"Music" = " "
+"Pictures" = " "
+
+[c]
+symbol = " "
+style = "bg:#2e4b47"
+format = '[ $symbol ($version) ]($style)'
+
+[python]
+symbol = " "
+style = "bg:#2e4b47"
+format = '[ $symbol ($version) ]($style)'
+
+[docker_context]
+symbol = " "
+style = "bg:#2e4b47"
+format = '[ $symbol $context ]($style) $path'
+
+[elixir]
+symbol = " "
+style = "bg:#2e4b47"
+format = '[ $symbol ($version) ]($style)'
+
+[elm]
+symbol = " "
+style = "bg:#2e4b47"
+format = '[ $symbol ($version) ]($style)'
+
+[git_branch]
+symbol = ""
+style = "bg:#2e4b47"
+format = '[ $symbol $branch ]($style)'
+
+[git_status]
+style = "bg:#2e4b47"
+format = '[$all_status$ahead_behind ]($style)'
+
+[golang]
+symbol = " "
+style = "bg:#2e4b47"
+format = '[ $symbol ($version) ]($style)'
+
+[haskell]
+symbol = " "
+style = "bg:#2e4b47"
+format = '[ $symbol ($version) ]($style)'
+
+[java]
+symbol = " "
+style = "bg:#2e4b47"
+format = '[ $symbol ($version) ]($style)'
+
+[julia]
+symbol = " "
+style = "bg:#2e4b47"
+format = '[ $symbol ($version) ]($style)'
+
+[nodejs]
+symbol = ""
+style = "bg:#2e4b47"
+format = '[ $symbol ($version) ]($style)'
+
+[nim]
+symbol = " "
+style = "bg:##434c5e"
+format = '[ $symbol ($version) ]($style)'
+
+[rust]
+symbol = ""
+style = "bg:#2e4b47"
+format = '[ $symbol ($version) ]($style)'
+
+[scala]
+symbol = " "
+style = "bg:#2e4b47"
+format = '[ $symbol ($version) ]($style)'
+
+[character]
+success_symbol = '[ ›](#6272a4)'
+error_symbol = '[ ›](bold red)'
+
