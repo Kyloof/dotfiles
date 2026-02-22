@@ -1,0 +1,50 @@
+# melange-kitty theme
+# kitty theme based on the amazing melange-nvim colorscheme for neovim
+
+#: The basic colors
+foreground #ece1d7
+background #292522
+selection_foreground #ece1d7
+selection_background #403a36
+
+#: Cursor colors
+cursor #a6a28c
+cursor_text_color #31302a
+
+
+#: URL underline color when hovering with mouse
+url_color #e49b5d
+
+#: The basic 16 colors
+
+#: black
+color0 #20201d
+color8 #7d7a68
+
+#: red
+color1 #d13f3f
+color9 #b65611
+
+#: green
+color2 #4eb570 
+color10 #292824
+
+#: yellow
+color3 #ebc06d
+color11 #6e6b5e
+
+#: blue
+color4 #6684e1
+color12 #999580
+
+#: magenta
+color5 #b854d4
+color13 #e8e4cf
+
+#: cyan
+color6 #1fad83
+color14 #d43552
+
+#: white
+color7 #a6a28c
+color15 #fefbec

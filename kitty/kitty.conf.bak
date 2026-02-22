@@ -1,19 +1,25 @@
+shell			/usr/bin/zsh
 font_size		13.0
-font_family		BlexMono Nerd Font	
-bold_font		auto
-italic_font		auto
-bold_italic_font	auto
-tab_bar_style		powerline
-tab_powerline_style	slanted
-tab_bar_edge		top
-tab_bar_margin_height	0.0 0.0
+font_family      F25 Blackletter Typewriter
+# bold_font		BlexMono Nerd Font Bold
+# italic_font		BlexMono Nerd Font Italic
+# bold_italic_font	BlexMono Nerd Font Bold Italic
+shell zsh -l
 
 
 # BEGIN_KITTY_THEME
-# Adapta Nokto Maia
+# Atelier Dune Dark
 include current-theme.conf
 # END_KITTY_THEME
 #
 #
-background_opacity	0.8
-background_blur 10
+#background_opacity	0.8
+#background_blur 30
+
+
+# BEGIN_KITTY_FONTS
+#font_family      family='BlexMono Nerd Font Mono' postscript_name=BlexMonoNFM
+bold_font        auto
+italic_font      auto
+bold_italic_font auto
+# END_KITTY_FONTS

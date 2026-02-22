@@ -8,10 +8,6 @@ zle_highlight=('paste:none')
 source $ZDOTDIR/completion.zsh
 fpath=(~/.zsh/zsh-completions/src $fpath)
 
-
-export DOTNET_ROOT=/snap/dotnet-runtime-90/current
-emulate sh -c 'source /etc/profile'
-
 # aliases
 source "$ZDOTDIR/aliases.zsh"
 
@@ -26,5 +22,6 @@ export KEYTIMEOUT=1
 source "$ZDOTDIR/functions.zsh"
 
 # zsh plugins
+zsh_add_plugin "sharkdp/lscolors"
 zsh_add_plugin "zsh-users/zsh-autosuggestions"
 zsh_add_plugin "zsh-users/zsh-syntax-highlighting"
