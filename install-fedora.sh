@@ -4,6 +4,7 @@ cp -r ~/dotfiles ~/.dotfiles
 
 DOTFILES_DIR="$HOME/.dotfiles"
 CONFIG_DIR="$HOME/.config"
+FONT_DIR="$HOME/.local/share/fonts"
 
 # neovim
 sudo dnf install nvim
@@ -22,3 +23,6 @@ ln -sf "$DOTFILES_DIR/zsh" "$CONFIG_DIR/zsh"
 # kitty
 sudo dnf install kitty
 ln -sf "$DOTFILES_DIR/kitty" "$CONFIG_DIR/kitty"
+
+# dejavu font
+sudo cp -r "$DOTFILES_DIR/dejavu" "$FONT_DIR/dejavu"
