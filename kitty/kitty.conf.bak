@@ -1,9 +1,5 @@
 shell			/usr/bin/zsh
 font_size		13.0
-font_family      F25 Blackletter Typewriter
-# bold_font		BlexMono Nerd Font Bold
-# italic_font		BlexMono Nerd Font Italic
-# bold_italic_font	BlexMono Nerd Font Bold Italic
 shell zsh -l
 
 
@@ -18,7 +14,7 @@ include current-theme.conf
 
 
 # BEGIN_KITTY_FONTS
-#font_family      family='BlexMono Nerd Font Mono' postscript_name=BlexMonoNFM
+font_family      family="BlexMono Nerd Font Mono"
 bold_font        auto
 italic_font      auto
 bold_italic_font auto
