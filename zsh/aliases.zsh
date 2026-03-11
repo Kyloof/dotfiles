@@ -1,3 +1,7 @@
 alias ls='ls --color=auto'
 alias grep='grep --color'
-alias dtnet='cd ~/Studia/Semestr5/dotnet/labs/'
+
+alias iot='cd ~/Notes/iot'
+alias ele='cd ~/Notes/electronics'
+alias stu='cd ~/Studia'
+alias dot='cd ~/.dotfiles'
