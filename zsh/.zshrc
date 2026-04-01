@@ -25,3 +25,7 @@ source "$ZDOTDIR/functions.zsh"
 zsh_add_plugin "sharkdp/lscolors"
 zsh_add_plugin "zsh-users/zsh-autosuggestions"
 zsh_add_plugin "zsh-users/zsh-syntax-highlighting"
+
+
+# "bat" as manpager
+export MANPAGER="sh -c 'col -b | bat -l man -p'"
