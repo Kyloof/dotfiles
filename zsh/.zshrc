@@ -28,4 +28,5 @@ zsh_add_plugin "zsh-users/zsh-syntax-highlighting"
 
 
 # "bat" as manpager
-export MANPAGER="sh -c 'col -b | bat -l man -p'"
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+export MANROFFOPT="-c"
