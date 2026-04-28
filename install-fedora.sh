@@ -25,7 +25,7 @@ fi
 # 
 # Install nvim
 sudo dnf install nvim
-ln -sf "$DOTFILES_DIR/nvim" "$CONFIG_DIR/nvim"
+ln -snf "$DOTFILES_DIR/nvim" "$CONFIG_DIR/nvim"
 
 # Install luarocks - REQUIRED for image.nvim
 sudo dnf install luarocks lua5.1 ImageMagick
@@ -39,15 +39,15 @@ sudo dnf install zsh
 chsh -s /usr/bin/zsh
 curl -sS https://starship.rs/install.sh | sh
 
-ln -sf "$DOTFILES_DIR/starship.toml" "$CONFIG_DIR/starship.toml"
-ln -sf "$DOTFILES_DIR/.zshenv" "$HOME/.zshenv"
-ln -sf "$DOTFILES_DIR/zsh" "$CONFIG_DIR/zsh"
+ln -snf "$DOTFILES_DIR/starship.toml" "$CONFIG_DIR/starship.toml"
+ln -snf "$DOTFILES_DIR/.zshenv" "$HOME/.zshenv"
+ln -snf "$DOTFILES_DIR/zsh" "$CONFIG_DIR/zsh"
 
 # ===========================
 #            Kitty
 # ===========================
 sudo dnf install kitty
-ln -sf "$DOTFILES_DIR/kitty" "$CONFIG_DIR/kitty"
+ln -snf "$DOTFILES_DIR/kitty" "$CONFIG_DIR/kitty"
 
 # Dejavu font (my font of choice for terminal work)
 sudo cp -rf "$DOTFILES_DIR/dejavu" "$FONT_DIR/dejavu"
@@ -61,7 +61,7 @@ kitty -e kitten choose-fonts
 # ===========================
 wget -nv "https://github.com/typst/typst/releases/download/v0.14.2/typst-$ARCH-unknown-linux-musl.tar.xz" -O- | \
 sudo tar -xJ -C /opt/ --strip-components=1 "typst-$ARCH-unknown-linux-musl/typst"
-sudo ln -sf /opt/typst /usr/bin/typst
+sudo ln -snf /opt/typst /usr/bin/typst
 
 # Custom fork of grape-suite theme - winogrono-suite
 mkdir -p "$HOME/.local/share/typst/packages/local"

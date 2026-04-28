@@ -23,22 +23,22 @@ mkdir -p "$CONFIG_DIR"
 # 
 # Install nvim
 brew install nvim
-ln -sf "$DOTFILES_DIR/nvim" "$CONFIG_DIR/nvim"
+ln -snf "$DOTFILES_DIR/nvim" "$CONFIG_DIR/nvim"
 
 # ===========================
 #       ZSH + Starship
 # ===========================
 brew install starship
 
-ln -sf "$DOTFILES_DIR/starship.toml" "$CONFIG_DIR/starship.toml"
-ln -sf "$DOTFILES_DIR/.zshenv" "$HOME/.zshenv"
-ln -sf "$DOTFILES_DIR/zsh" "$CONFIG_DIR/zsh"
+ln -snf "$DOTFILES_DIR/starship.toml" "$CONFIG_DIR/starship.toml"
+ln -snf "$DOTFILES_DIR/.zshenv" "$HOME/.zshenv"
+ln -snf "$DOTFILES_DIR/zsh" "$CONFIG_DIR/zsh"
 
 # ===========================
 #            Kitty
 # ===========================
 brew install --cask kitty
-ln -sf "$DOTFILES_DIR/kitty" "$CONFIG_DIR/kitty"
+ln -snf "$DOTFILES_DIR/kitty" "$CONFIG_DIR/kitty"
 
 # Dejavu font for terminal
 cp -rf "$DOTFILES_DIR/dejavu/"* "$FONT_DIR/"
