@@ -72,4 +72,4 @@ git clone git@github.com:Kyloof/winogrono-suite.git "$HOME/.local/share/typst/pa
 # ===========================
 #       Useful Programs
 # ===========================
-sudo dnf install bat
+sudo dnf install bat cargo
