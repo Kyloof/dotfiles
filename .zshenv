@@ -15,4 +15,4 @@ export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 export HISTFILE="$ZDOTDIR/.zhistory"    # history filepath
 export HISTSIZE=10000                   # maximum events for internal history
 export SAVEHIST=10000                   # maximum events in history file
-. "$HOME/.cargo/env"
+# . "$HOME/.cargo/env"

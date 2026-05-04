@@ -1,3 +1,5 @@
 .zcompdump
 .zhistory
 zsh/plugins
+.zsh_sessions
+.zsh_history

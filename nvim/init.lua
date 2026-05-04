@@ -14,7 +14,7 @@ vim.o.tabstop = 4
 vim.o.shiftwidth = 4
 vim.o.pumheight = 5
 vim.o.autoindent = true
-
+vim.o.clipboard = "unnamedplus"
 
 local gh = function(path) return "https://github.com/" .. path end
 
@@ -39,13 +39,16 @@ vim.pack.add {
 	-- Flutter
 	gh("nvim-flutter/flutter-tools.nvim"),
 	-- Typst
-	gh("kaarmu/typst.vim")
+	gh("kaarmu/typst.vim"),
+	-- Markdown
+	gh("MeanderingProgrammer/render-markdown.nvim"),
 }
 
 -- nvim-treesitter
 require("nvim-treesitter").setup {
   install_dir = vim.fn.stdpath("data") .. "/site"
 }
+
 
 -- blink.cmp
 local cmp = require('blink.cmp')
