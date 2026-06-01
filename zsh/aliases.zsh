@@ -7,3 +7,4 @@ alias dot='cd ~/.dotfiles'
 
 alias stn='cd ~/Notes/studies/sem-6'
 alias stu='cd ~/Studies/sem-6'
+alias wkdir='cd /home/kyloof/Studies/sem-6/si/lab/lab-4'

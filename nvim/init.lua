@@ -1,6 +1,7 @@
 -- ====================
 -- 		  Globals
 -- ====================
+
 vim.g.have_nerd_font = true
 vim.g.mapleader = " "
 
@@ -8,48 +9,74 @@ vim.g.mapleader = " "
 -- ====================
 -- 		  Options
 -- ====================
-vim.o.number = true
-vim.o.relativenumber = true
-vim.o.tabstop = 4
-vim.o.shiftwidth = 4
-vim.o.pumheight = 5
+
 vim.o.autoindent = true
 vim.o.clipboard = "unnamedplus"
+vim.o.confirm = true
+vim.o.number = true
+vim.o.pumheight = 5
+vim.o.relativenumber = true
+vim.o.shiftwidth = 4
+vim.o.tabstop = 4
+
+
+-- ====================
+-- 	     Plugins
+-- ====================
 
 local gh = function(path) return "https://github.com/" .. path end
 
--- ====================
--- 		  Plugins
--- ====================
 vim.pack.add {
 	-- Core
 	gh("nvim-treesitter/nvim-treesitter"),
 	gh("xzbdmw/colorful-menu.nvim"), -- treesitter + colors for completion
 	gh("nvim-lua/plenary.nvim"),
+	-- Completion
+	gh("Saghen/blink.cmp"),
+	gh("Saghen/blink.lib"),
 	-- LSP
 	gh("neovim/nvim-lspconfig"),
 	gh("mason-org/mason.nvim"),
 	gh("mason-org/mason-lspconfig.nvim"),
+	gh("seblyng/roslyn.nvim"),
+	-- Formatting
+	gh("stevearc/conform.nvim"),
+	-- Highlighting
+	gh("phelipetls/vim-hugo"),
 	-- UI
 	gh("sainnhe/gruvbox-material"),
 	gh("stevearc/dressing.nvim"),
-	-- Completion
-	gh("Saghen/blink.cmp"),
-	gh("Saghen/blink.lib"),
-	-- Flutter
+	-- Dev
 	gh("nvim-flutter/flutter-tools.nvim"),
-	-- Typst
+	gh("jlcrochet/vim-razor"),
+	-- Notetaking
 	gh("kaarmu/typst.vim"),
-	-- Markdown
 	gh("MeanderingProgrammer/render-markdown.nvim"),
+	-- AI
+	gh("olimorris/codecompanion.nvim"),
+	-- File Exploration
+	gh("stevearc/oil.nvim"),
 }
+
+
+-- ====================
+-- 	  Plugin Config
+-- ====================
+
+-- ====================
+-- 	  	   Core
+-- ====================
 
 -- nvim-treesitter
 require("nvim-treesitter").setup {
-  install_dir = vim.fn.stdpath("data") .. "/site"
+	install_dir = vim.fn.stdpath("data") .. "/site",
+	highlight = { enable = true },
 }
 
+-- Injections
 
+-- Completion
+--
 -- blink.cmp
 local cmp = require('blink.cmp')
 cmp.build():wait(60000)
@@ -74,25 +101,26 @@ cmp.setup({
 				columns = { { "kind_icon" }, { "label", gap = 1 } },
 				components = {
 					label = {
-					    text = function(ctx)
-						return require("colorful-menu").blink_components_text(ctx)
-					    end,
-					    highlight = function(ctx)
-						return require("colorful-menu").blink_components_highlight(ctx)
-					    end,
+						text = function(ctx)
+							return require("colorful-menu").blink_components_text(ctx)
+						end,
+						highlight = function(ctx)
+							return require("colorful-menu").blink_components_highlight(ctx)
+						end,
 					},
 				},
 			},
-	    },
+		},
 		ghost_text = {
 			enabled = true
 		},
 	}
 })
 
--- gruvbox-material
-vim.cmd.colorscheme("gruvbox-material")
-
+-- ====================
+-- 	  	   LSP
+-- ====================
+--
 -- mason
 require("mason").setup({
 	registries = {
@@ -103,11 +131,7 @@ require("mason").setup({
 
 require("mason-lspconfig").setup()
 
--- LSP
-vim.lsp.config('*', {
-     capabilities = cmp.get_lsp_capabilities(),
-})
-
+-- Diagnostics
 vim.diagnostic.open_float({ focusable = true })
 vim.diagnostic.config({
 	float = {
@@ -115,52 +139,116 @@ vim.diagnostic.config({
 	}
 })
 
--- Include vim workspace library 
-vim.lsp.config('lua_ls', {
-    settings = {
-        Lua = {
-            diagnostics = {
-                globals = { "vim" }
-            },
-            workspace = {
-                library = vim.api.nvim_get_runtime_file("", true),
-                checkThirdParty = false,
-            },
-            telemetry = { enable = false },
-        }
-    }
+-- Capabilities
+vim.lsp.config('*', {
+	capabilities = cmp.get_lsp_capabilities(),
 })
 
+-- DartLS
 vim.lsp.config("dartls", {
 	cmd = { "dart", 'language-server', '--protocol=lsp' }
 })
 
+-- Roslyn
+vim.lsp.config("roslyn", {
+	settings = {
+		["csharp|inlay_hints"] = {
+			csharp_enable_inlay_hints_for_implicit_object_creation = true,
+			csharp_enable_inlay_hints_for_implicit_variable_types = true,
+		},
+		["csharp|code_lens"] = {
+			dotnet_enable_references_code_lens = true,
+		},
+	},
+})
+
+vim.filetype.add({
+	extension = {
+		cshtml = 'razor',
+		razor = 'razor',
+	},
+})
+
+vim.treesitter.language.register('html', 'razor')
+
+-- lua_ls
+vim.lsp.config('lua_ls', {
+	settings = {
+		Lua = {
+			diagnostics = {
+				globals = { "vim" }
+			},
+			workspace = {
+				library = vim.api.nvim_get_runtime_file("", true),
+				checkThirdParty = false,
+			},
+			telemetry = { enable = false },
+		}
+	}
+})
+
+-- ====================
+-- 	  	 Formatter
+-- ====================
+require("conform").setup({
+	formatters_by_ft = {
+		-- lua = { "stylua" },
+		html = { "prettier" },
+		htmlhugo = { "prettier" },
+		markdown = { "prettier" },
+
+		-- Conform will run multiple formatters sequentially
+		-- python = { "isort", "black" },
+		-- You can customize some of the format options for the filetype (:help conform.format)
+		-- rust = { "rustfmt", lsp_format = "fallback" },
+		-- Conform will run the first available formatter
+		-- javascript = { "prettierd", "prettier", stop_after_first = true },
+	},
+	format_on_save = {
+		timeout_ms = 2500,
+		lsp_fallback = true,
+	},
+})
+
+-- ====================
+-- 	  	 	UI
+-- ====================
+--
+-- gruvbox-material
+vim.cmd.colorscheme("gruvbox-material")
+
+-- Dev
+--
 -- Flutter-tools
 require("flutter-tools").setup({})
 
--- netrw
-vim.g.netrw_banner = 0
-vim.g.netrw_liststyle = 3 -- Tree style
+-- oil
+require("oil").setup()
+
+
 
 -- ====================
 -- 		  Keymaps
 -- ====================
+
+-- Hover
 vim.keymap.set('n', 'K', function()
-  vim.lsp.buf.hover { border = "single", max_height = 25, max_width = 120 }
+	vim.lsp.buf.hover { border = "single", max_height = 25, max_width = 120 }
 end, { desc = "Hover documentation" })
 
+-- Diagnostic errors
 vim.keymap.set("n", "gl", vim.diagnostic.open_float)
+
+-- Browse files with oil.nvim
+vim.keymap.set("n", "<Bslash>", "<cmd>Oil<cr>", { desc = "Open Oil" })
 
 
 -- ====================
 -- 		 Autocmds
 -- ====================
 
-
-vim.api.nvim_create_autocmd("BufWritePre", {
-  pattern = "*.dart",
-  callback = function()
-    vim.lsp.buf.format()
-  end,
-})
-
+-- Autoformat
+--
+-- ====================
+-- 		Injections
+-- ====================

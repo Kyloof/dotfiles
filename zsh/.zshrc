@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env zsh
 
 # useful options (zshoptions)
 unsetopt BEEP
