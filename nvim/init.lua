@@ -46,14 +46,13 @@ vim.pack.add {
 	-- UI
 	gh("sainnhe/gruvbox-material"),
 	gh("stevearc/dressing.nvim"),
+	gh("stevearc/aerial.nvim"), -- A code outline window for navigation
 	-- Dev
 	gh("nvim-flutter/flutter-tools.nvim"),
 	gh("jlcrochet/vim-razor"),
 	-- Notetaking
 	gh("kaarmu/typst.vim"),
 	gh("MeanderingProgrammer/render-markdown.nvim"),
-	-- AI
-	gh("olimorris/codecompanion.nvim"),
 	-- File Exploration
 	gh("stevearc/oil.nvim"),
 }
@@ -225,6 +224,14 @@ require("flutter-tools").setup({})
 -- oil
 require("oil").setup()
 
+require("aerial").setup({
+	on_attach = function(bufnr)
+		vim.keymap.set("n", "{", "<cmd>AerialPrev<CR>", { buffer = bufnr })
+		vim.keymap.set("n", "}", "<cmd>AerialNext<CR>", { buffer = bufnr })
+	end,
+})
+
+vim.keymap.set("n", "<leader>n", "<cmd>AerialToggle!<CR>")
 
 
 -- ====================
@@ -243,10 +250,31 @@ vim.keymap.set("n", "gl", vim.diagnostic.open_float)
 vim.keymap.set("n", "<Bslash>", "<cmd>Oil<cr>", { desc = "Open Oil" })
 
 
+
+
+
 -- ====================
 -- 		 Autocmds
 -- ====================
+local augroup = vim.api.nvim_create_augroup("keymaps", { clear = true })
 
+vim.api.nvim_create_autocmd("FileType", {
+	group = augroup,
+	pattern = "typst",
+	callback = function()
+		vim.keymap.set('n', '<leader>l', function()
+			-- Parametry nvim_put:
+			-- 1. Tabela z liniami tekstu do wstawienia
+			-- 2. Typ wstawiania: 'l' (nowa linia), 'c' (w miejscu kursora)
+			-- 3. Czy wstawić ZA kursorem (true/false)
+			-- 4. Czy przenieść kursor na koniec wstawionego tekstu (true/false)
+			vim.api.nvim_put({ '#line(length: 100%)' }, 'c', true, true)
+		end, { buffer = true, desc = "Insert line" })
+		vim.keymap.set('n', '<leader>a', function()
+			vim.api.nvim_put({ '$=>$' }, 'c', true, true)
+		end, { buffer = true, desc = "Insert arrow" })
+	end,
+})
 -- Autoformat
 --
 -- ====================
