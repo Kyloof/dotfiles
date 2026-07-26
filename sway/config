@@ -37,7 +37,7 @@ output * bg /home/kyloof/Pictures/burzum.png fill
 # Example configuration:
 #
 output DP-4 position 0,0
-output DP-5 position 1920,0 scale
+output DP-5 position 1920,0 
 #
 # You can get the names of your outputs by running: swaymsg -t get_outputs
 
