@@ -56,6 +56,13 @@ rm -rf "$HOME/swaylock-fancy"
 # papirus icon theme
 wget -qO- https://git.io/papirus-icon-theme-install | sh
 
+# ===========================
+#           Waybar
+# ===========================
+
+ln -snf "$DOTFILES_DIR/waybar" "$CONFIG_DIR/waybar"
+
+
 
 
 # ===========================
