@@ -44,6 +44,12 @@ ln -snf "$DOTFILES_DIR/.zshenv" "$HOME/.zshenv"
 ln -snf "$DOTFILES_DIR/zsh" "$CONFIG_DIR/zsh"
 
 # ===========================
+#            Sway
+# ===========================
+ln -s ~/.dotfiles/sway ~/.config
+
+
+# ===========================
 #            Kitty
 # ===========================
 sudo dnf install kitty
@@ -53,8 +59,6 @@ ln -snf "$DOTFILES_DIR/kitty" "$CONFIG_DIR/kitty"
 sudo cp -rf "$DOTFILES_DIR/dejavu" "$FONT_DIR/dejavu"
 sudo fc-cache -fv
 
-# Select the font via a kitten menu
-kitty -e kitten choose-fonts
 
 # ===========================
 #            Typst
@@ -63,9 +67,9 @@ wget -nv "https://github.com/typst/typst/releases/download/v0.14.2/typst-$ARCH-u
 sudo tar -xJ -C /opt/ --strip-components=1 "typst-$ARCH-unknown-linux-musl/typst"
 sudo ln -snf /opt/typst /usr/bin/typst
 
-# Custom fork of grape-suite theme - winogrono-suite
+# Custom fork of grape-suite theme - arkona
 mkdir -p "$HOME/.local/share/typst/packages/local"
-git clone git@github.com:Kyloof/winogrono-suite.git "$HOME/.local/share/typst/packages/local/winogrono-suite"
+git clone git@github.com:Kyloof/arkona.git "$HOME/.local/share/typst/packages/local/arkona"
 
 
 
