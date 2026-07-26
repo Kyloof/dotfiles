@@ -1,4 +1,4 @@
-# Default config for sway
+# Config for sway
 #
 # Copy this to ~/.config/sway/config and edit it to your liking.
 #
@@ -26,7 +26,8 @@ set $rofi_cmd rofi \
 # Shows a combined list of the applications with desktop files and
 # executables from PATH.
 # TODO: add window with the next release of rofi-wayland
-set $menu $rofi_cmd -show combi -combi-modes drun#run -modes combi
+set $menu $rofi_cmd -show combi -combi-modes drun
+#run -modes combi
 
 ### Output configuration
 #
@@ -42,13 +43,11 @@ output DP-5 position 1920,0
 # You can get the names of your outputs by running: swaymsg -t get_outputs
 
 ### Idle configuration
-#
-# Example configuration:
-#
 exec swayidle -w \
-         timeout 300 'swaylock -f -c 000000' \
-         timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
-         before-sleep 'swaylock -f -c 000000'
+	timeout 300 'swaylock-fancy' \
+	timeout 600 'swaymsg "output * dpms off"' \
+		resume 'swaymsg "output * dpms on"' \
+	before-sleep 'swaylock-fancy'
 #
 # This will lock your screen after 300 seconds of inactivity, then turn off
 # your displays after another 300 seconds, and turn your screens back on when
@@ -68,6 +67,27 @@ exec swayidle -w \
 # You can get the names of your inputs by running: swaymsg -t get_inputs
 # Read `man 5 sway-input` for more information about this section.
 
+### Style
+#
+# Basics:
+#
+	# Font
+	font pango: Adwaita Sans Mono 12
+
+	# Borders
+	default_border pixel 2
+	set $bg #252115
+	set $border_f #6a5b48
+	set $border_u #262217
+	set $text #d2d2d2
+	client.focused   $border_f $bg $text $border_f $border_f
+	client.unfocused $border_u $bg $text $border_u $border_u
+	client.focused_inactive $border_u $bg $text $border_u $border_u
+
+	# Gaps
+	gaps inner 4
+	gaps outer 4
+
 ### Key bindings
 #
 # Basics:
@@ -75,7 +95,7 @@ exec swayidle -w \
     # Start a terminal
     bindsym $mod+Return exec $term
 
-	# Start broweser
+	# Start a browser
     bindsym $mod+f exec $browser
 
     # Kill focused window
@@ -217,6 +237,7 @@ mode "resize" {
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
+
 bindsym $mod+r m2de "resize"
 
 # Include configs from 3 locations:

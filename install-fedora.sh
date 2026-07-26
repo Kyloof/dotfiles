@@ -46,7 +46,16 @@ ln -snf "$DOTFILES_DIR/zsh" "$CONFIG_DIR/zsh"
 # ===========================
 #            Sway
 # ===========================
-ln -s ~/.dotfiles/sway ~/.config
+ln -snf "$DOTFILES_DIR/sway" "$CONFIG_DIR/sway"
+
+# swaylock-fancy
+git clone https://github.com/Big-B/swaylock-fancy "$HOME/swaylock-fancy"
+sudo make install "$HOME/swaylock-fancy"
+rm -rf "$HOME/swaylock-fancy"
+
+# papirus icon theme
+wget -qO- https://git.io/papirus-icon-theme-install | sh
+
 
 
 # ===========================

@@ -1,0 +1,157 @@
+// -*- mode: jsonc -*-
+[{
+    "output": ["DP-4", "DP-5"],
+    // "layer": "top", // Waybar at top layer
+    // "position": "bottom", // Waybar position (top|bottom|left|right)
+    "height": 24, // Waybar height (to be removed for auto height)
+    // "width": 1280, // Waybar width
+    "spacing": 4, // Gaps between modules (4px)
+    // Choose the order of the modules
+    "modules-left": [
+        "sway/workspaces",
+		"sway/mode",
+    ],
+    "modules-center": [
+        "sway/window"
+    ],
+    "modules-right": [ "mpris",
+        "idle_inhibitor",
+		"pulseaudio",
+        "backlight",
+        "clock",
+		"tray"
+    ],
+    // Modules configuration
+    "sway/workspaces": {
+        "all-outputs": true,
+        "warp-on-scroll": false,
+        "enable-bar-scroll": true,
+        "disable-scroll-wraparound": true,
+        "format": "{icon}",
+        "format-icons": {
+            "1": "",
+            "2": "",
+            "3": "",
+            "4": "",
+            "5": "",
+            "9": "",
+            "10": ""
+        }
+    },
+    "sway/window": {
+        "format": "{title}",
+        "max-length": 80,
+        "all-outputs": true
+    },
+    "mpris": {
+		"format": "{status_icon} {dynamic}",
+			"interval": 1,
+			"dynamic-len": 40,
+		"status-icons": {
+			"playing": "▶",
+			"paused": "⏸",
+			"stopped": ""
+		},
+		"dynamic-order": ["artist", "title"],
+		"ignored-players": ["firefox"]
+		},
+		"idle_inhibitor": {
+			"format": "{icon}",
+			"format-icons": {
+				"activated": "",
+				"deactivated": ""
+			}
+    },
+    "sway/mode": {
+        "format": "{}"
+    },
+    "sway/scratchpad": {
+        "format": "{icon} {count}",
+        "show-empty": false,
+        "format-icons": ["", ""],
+        "tooltip": true,
+        "tooltip-format": "{app}: {title}"
+    },
+	"tray": {
+        "icon-size": 14,
+        "spacing": 10
+    },
+    "clock": {
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "format-alt": "{:%Y-%m-%d}"
+    },
+    "pulseaudio": {
+        // "scroll-step": 1, // %, can be a float
+        "format": "{volume}% {icon}",
+        "format-bluetooth": "{volume}% {icon} {format_source}",
+        "format-bluetooth-muted": " {icon} {format_source}",
+        "format-muted": " {format_source}",
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", "", ""]
+        },
+        "on-click": "pavucontrol"
+    },
+}
+/*
+    "output": ["HDMI-A-1"],
+    // "layer": "top", // Waybar at top layer
+    // "position": "bottom", // Waybar position (top|bottom|left|right)
+    "height": 24, // Waybar height (to be removed for auto height)
+    // "width": 1280, // Waybar width
+    "spacing": 4, // Gaps between modules (4px)
+    // Choose the order of the modules
+    "modules-left": [
+        "sway/workspaces",
+        "sway/mode",
+        "sway/scratchpad"
+    ],
+    "modules-center": [
+        "clock"
+    ],
+    "modules-right": [
+        "sway/window"
+    ],
+    "sway/workspaces": {
+        "all-outputs": true,
+        "warp-on-scroll": true,
+        "enable-bar-scroll": true,
+        "format": "{icon}",
+        "format-icons": {
+            "1": "",
+            "2": "",
+            "3": "",
+            "4": "",
+            "5": "",
+            "9": "",
+            "10": ""
+        }
+    },
+    "sway/window": {
+        "format": "{title}",
+        "max-length": 40,
+        "all-outputs": true
+    },
+    "sway/mode": {
+        "format": "{}"
+    },
+    "sway/scratchpad": {
+        "format": "{icon} {count}",
+        "show-empty": false,
+        "format-icons": ["", ""],
+        "tooltip": true,
+        "tooltip-format": "{app}: {title}"
+    },
+    "clock": {
+        // "timezone": "America/New_York",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "format-alt": "{:%Y-%m-%d}"
+    }
+}
+*/
+]
