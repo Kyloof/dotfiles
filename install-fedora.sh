@@ -18,6 +18,7 @@ else
     ARCH="x86_64"
 fi
 
+# Background image
 mv "$DOTFILES_DIR/burzum.png" "$HOME/Pictures/"
 
 
@@ -55,8 +56,21 @@ git clone https://github.com/Big-B/swaylock-fancy "$HOME/swaylock-fancy"
 sudo make install "$HOME/swaylock-fancy"
 rm -rf "$HOME/swaylock-fancy"
 
+# ===========================
+#           Theme
+# ===========================
 # papirus icon theme
 wget -qO- https://git.io/papirus-icon-theme-install | sh
+
+# adwaita black theme
+sudo dnf install adw-gtk3-theme
+
+# GTK3 - dark mode
+sudo dnf install glib2 dconf
+sudo dnf install xdg-desktop-portal-gtk xdg-desktop-portal-wlr
+
+ln -sf "$DOTFILES_DIR/gtk-3.0" "$CONFIG_DIR/gtk-3.0"
+gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
 
 # ===========================
 #           Waybar
