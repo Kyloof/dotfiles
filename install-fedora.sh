@@ -18,6 +18,8 @@ else
     ARCH="x86_64"
 fi
 
+mv "$DOTFILES_DIR/burzum.png" "$HOME/Pictures/"
+
 
 # ===========================
 #           Neovim
