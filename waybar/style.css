@@ -1,11 +1,10 @@
 * {
-	font-family: DejaVu Sans;
-    font-size: 14px;
+	font-family: Hack Nerd Font Propo;
+    font-size: 17px;
     border-radius: 5px;
 }
 
 window#waybar {
-    font-family: FontAwesome, monospace;
 	background-color: rgba(40, 40, 40, 0.7);
     border-bottom: 0px;
     color: #ebdbb2;

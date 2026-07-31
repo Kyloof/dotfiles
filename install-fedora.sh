@@ -72,7 +72,7 @@ sudo dnf install kitty
 ln -snf "$DOTFILES_DIR/kitty" "$CONFIG_DIR/kitty"
 
 # Dejavu font (my font of choice for terminal work)
-sudo cp -rf "$DOTFILES_DIR/dejavu" "$FONT_DIR/dejavu"
+sudo cp -rf "$DOTFILES_DIR/hack-nerd-font" "$FONT_DIR/hack-nerd-font"
 sudo fc-cache -fv
 
 
