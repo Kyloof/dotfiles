@@ -4,6 +4,7 @@ sudo -v
 rm -rf ~/.dotfiles
 cp -rf ~/dotfiles ~/.dotfiles
 
+
 # ===========================
 #          Variables
 # ===========================
@@ -46,15 +47,18 @@ ln -snf "$DOTFILES_DIR/starship.toml" "$CONFIG_DIR/starship.toml"
 ln -snf "$DOTFILES_DIR/.zshenv" "$HOME/.zshenv"
 ln -snf "$DOTFILES_DIR/zsh" "$CONFIG_DIR/zsh"
 
+
 # ===========================
 #            Sway
 # ===========================
 ln -snf "$DOTFILES_DIR/sway" "$CONFIG_DIR/sway"
 
 # swaylock-fancy
-git clone https://github.com/Big-B/swaylock-fancy "$HOME/swaylock-fancy"
-sudo make install "$HOME/swaylock-fancy"
-rm -rf "$HOME/swaylock-fancy"
+git clone https://github.com/Big-B/swaylock-fancy /tmp/swaylock-fancy && \
+	cd /tmp/swaylock-fancy && \
+	sudo make install && \
+	cd - && rm -rf /tmp/swaylock-fancy
+
 
 # ===========================
 #           Theme
@@ -72,13 +76,19 @@ sudo dnf install xdg-desktop-portal-gtk xdg-desktop-portal-wlr
 ln -sf "$DOTFILES_DIR/gtk-3.0" "$CONFIG_DIR/gtk-3.0"
 gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
 
+
 # ===========================
 #           Waybar
 # ===========================
-
 ln -snf "$DOTFILES_DIR/waybar" "$CONFIG_DIR/waybar"
 
 
+# ===========================
+#            Rofi
+# ===========================
+git clone https://github.com/adi1090x/rofi.git /tmp/rofi && \
+	cd /tmp/rofi && ./setup.sh && \
+	cd - && rm -rf /tmp/rofi
 
 
 # ===========================
@@ -102,7 +112,6 @@ sudo ln -snf /opt/typst /usr/bin/typst
 # Custom fork of grape-suite theme - arkona
 mkdir -p "$HOME/.local/share/typst/packages/local"
 git clone git@github.com:Kyloof/arkona.git "$HOME/.local/share/typst/packages/local/arkona"
-
 
 
 # ===========================

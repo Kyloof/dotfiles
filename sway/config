@@ -23,10 +23,15 @@ set $browser firefox
 # Recommends: rofi-wayland
 set $rofi_cmd rofi \
         -terminal '$term'
+
+set $rofi_dir "$HOME/.config/rofi/launchers/type-2"
+set $rofi_theme 'style-4'
+
+## Run
 # Shows a combined list of the applications with desktop files and
 # executables from PATH.
 # TODO: add window with the next release of rofi-wayland
-set $menu $rofi_cmd -show combi -combi-modes drun
+set $menu $rofi_cmd -show drun -theme $rofi_dir/$rofi_theme.rasi
 #run -modes combi
 
 ### Output configuration
@@ -37,8 +42,8 @@ output * bg /home/kyloof/Pictures/burzum.png fill
 #
 # Example configuration:
 #
-output DP-1 position 0,0
-output DP-2 position 1920,0 
+output 'Dell Inc. DELL P2212H V0VCM22R5J6M' position 0,0
+output 'Samsung Electric Company Odyssey G5 HK7X801493' position 1920,0 
 #
 # You can get the names of your outputs by running: swaymsg -t get_outputs
 
@@ -144,14 +149,14 @@ exec swayidle -w \
 # Workspaces:
 #
     # Assign workspaces to monitors
-    workspace 1 output DP-5
-    workspace 2 output DP-5
-    workspace 3 output DP-5
-    workspace 4 output DP-5
-    workspace 5 output DP-4
-    workspace 6 output DP-4
-    workspace 7 output DP-4
-    workspace 8 output DP-4
+    workspace 1 output 'Samsung Electric Company Odyssey G5 HK7X801493'
+    workspace 2 output 'Samsung Electric Company Odyssey G5 HK7X801493'
+    workspace 3 output 'Samsung Electric Company Odyssey G5 HK7X801493'
+    workspace 4 output 'Samsung Electric Company Odyssey G5 HK7X801493'
+    workspace 5 output 'Dell Inc. DELL P2212H V0VCM22R5J6M'
+    workspace 6 output 'Dell Inc. DELL P2212H V0VCM22R5J6M'
+    workspace 7 output 'Dell Inc. DELL P2212H V0VCM22R5J6M'
+    workspace 8 output 'Dell Inc. DELL P2212H V0VCM22R5J6M'
 
     # Switch to workspace
     bindsym $mod+1 workspace number 1
