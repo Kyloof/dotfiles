@@ -28,6 +28,10 @@
       "rev": "2d7c2db2507fa3c4956142ee607431ddb2828639",
       "src": "https://github.com/stevearc/dressing.nvim"
     },
+    "esp32.nvim": {
+      "rev": "57b3d174c3a063c3894bc41ddcf0e0289e7277e4",
+      "src": "https://github.com/Aietes/esp32.nvim"
+    },
     "flutter-tools.nvim": {
       "rev": "7fc434e99297af83cba10deff008be53a008a6d5",
       "src": "https://github.com/nvim-flutter/flutter-tools.nvim"
@@ -67,6 +71,10 @@
     "roslyn.nvim": {
       "rev": "b62d1a588765f0aa1b46ed260252c9e456408835",
       "src": "https://github.com/seblyng/roslyn.nvim"
+    },
+    "snacks.nvim": {
+      "rev": "882c996cf28183f4d63640de0b4c02ec886d01f2",
+      "src": "https://github.com/folke/snacks.nvim"
     },
     "typst-preview.nvim": {
       "rev": "87db18b8d19c8b0eed399f52e4c527ce5afe4817",

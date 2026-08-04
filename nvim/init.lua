@@ -31,6 +31,7 @@ vim.pack.add {
 	gh("nvim-treesitter/nvim-treesitter"),
 	gh("xzbdmw/colorful-menu.nvim"), -- treesitter + colors for completion
 	gh("nvim-lua/plenary.nvim"),
+	gh("folke/snacks.nvim"),
 	-- Completion
 	gh("Saghen/blink.cmp"),
 	gh("Saghen/blink.lib"),
@@ -50,6 +51,7 @@ vim.pack.add {
 	-- Dev
 	gh("nvim-flutter/flutter-tools.nvim"),
 	gh("jlcrochet/vim-razor"),
+	gh("Aietes/esp32.nvim"),
 	-- Notetaking
 	gh("kaarmu/typst.vim"),
 	gh("MeanderingProgrammer/render-markdown.nvim"),
@@ -115,6 +117,11 @@ cmp.setup({
 		},
 	}
 })
+
+-- QoL
+--
+-- Snacks
+require("snacks").setup({})
 
 -- ====================
 -- 	  	   LSP
@@ -187,6 +194,14 @@ vim.lsp.config('lua_ls', {
 })
 
 -- ====================
+-- 	  	   Dev
+-- ====================
+require("esp32").setup()
+
+vim.lsp.config("clangd", require("esp32").lsp_config())
+vim.lsp.enable("clangd")
+
+-- ====================
 -- 	  	 Formatter
 -- ====================
 require("conform").setup({
@@ -195,6 +210,7 @@ require("conform").setup({
 		html = { "prettier" },
 		htmlhugo = { "prettier" },
 		markdown = { "prettier" },
+		c = { "clang" },
 
 		-- Conform will run multiple formatters sequentially
 		-- python = { "isort", "black" },
