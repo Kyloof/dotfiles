@@ -38,7 +38,8 @@ vim.pack.add {
 	gh("nvim-treesitter/nvim-treesitter"),
 	gh("xzbdmw/colorful-menu.nvim"), -- treesitter + colors for completion
 	gh("nvim-lua/plenary.nvim"),
-	gh("folke/snacks.nvim"),
+	gh("nvim-telescope/telescope.nvim"),
+	gh("nvim-telescope/telescope-fzf-native.nvim"),
 	-- Completion
 	gh("Saghen/blink.cmp"),
 	gh("Saghen/blink.lib"),
@@ -49,8 +50,11 @@ vim.pack.add {
 	gh("seblyng/roslyn.nvim"),
 	-- Formatting
 	gh("stevearc/conform.nvim"),
-	-- Highlighting
-	gh("phelipetls/vim-hugo"),
+	-- QoL
+	gh("NMAC427/guess-indent.nvim"),
+	gh("folke/snacks.nvim"),
+	gh("lukas-reineke/indent-blankline.nvim"),
+	gh("folke/todo-comments.nvim"),
 	-- UI
 	gh("sainnhe/gruvbox-material"),
 	gh("stevearc/dressing.nvim"),
@@ -59,6 +63,7 @@ vim.pack.add {
 	gh("nvim-flutter/flutter-tools.nvim"),
 	gh("jlcrochet/vim-razor"),
 	gh("Aietes/esp32.nvim"),
+	gh("phelipetls/vim-hugo"),
 	-- Notetaking
 	gh("kaarmu/typst.vim"),
 	gh("MeanderingProgrammer/render-markdown.nvim"),
@@ -125,10 +130,12 @@ cmp.setup({
 --
 -- Snacks
 require("snacks").setup({})
+-- guess-indent
+require("guess-indent").setup {}
+-- indent-blankline
+require("ibl").setup()
 
--- ====================
--- 	  	   LSP
--- ====================
+-- LSP
 --
 -- mason
 require("mason").setup({
@@ -196,17 +203,20 @@ vim.lsp.config('lua_ls', {
 	}
 })
 
--- ====================
--- 	  	   Dev
--- ====================
+-- Dev
+--
+-- esp32.nvim
 require("esp32").setup()
 
 vim.lsp.config("clangd", require("esp32").lsp_config())
 vim.lsp.enable("clangd")
+-- Flutter-tools
+require("flutter-tools").setup({})
 
--- ====================
--- 	  	 Formatter
--- ====================
+
+-- Formatter
+--
+-- conform.nvim
 require("conform").setup({
 	formatters_by_ft = {
 		-- lua = { "stylua" },
@@ -228,21 +238,15 @@ require("conform").setup({
 	},
 })
 
--- ====================
--- 	  	 	UI
--- ====================
+-- UI
 --
 -- gruvbox-material
 vim.cmd.colorscheme("gruvbox-material")
 
--- Dev
---
--- Flutter-tools
-require("flutter-tools").setup({})
-
 -- oil
 require("oil").setup()
 
+-- aerial
 require("aerial").setup({
 	on_attach = function(bufnr)
 		vim.keymap.set("n", "{", "<cmd>AerialPrev<CR>", { buffer = bufnr })
@@ -250,23 +254,26 @@ require("aerial").setup({
 	end,
 })
 
-vim.keymap.set("n", "<leader>n", "<cmd>AerialToggle!<CR>")
 
 
 -- ====================
 -- 		  Keymaps
 -- ====================
 
--- Hover
 vim.keymap.set('n', 'K', function()
 	vim.lsp.buf.hover { border = "single", max_height = 25, max_width = 120 }
 end, { desc = "Hover documentation" })
-
--- Diagnostic errors
-vim.keymap.set("n", "gl", vim.diagnostic.open_float)
-
--- Browse files with oil.nvim
+vim.keymap.set("n", "gl", vim.diagnostic.open_float, { desc = "Display diagnostic errors" })
 vim.keymap.set("n", "<Bslash>", "<cmd>Oil<cr>", { desc = "Open Oil" })
+vim.keymap.set("n", "<leader>n", "<cmd>AerialToggle!<CR>", { desc = "Toggle Aerial" })
+
+-- Telescope
+local builtin = require('telescope.builtin')
+
+vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Telescope find files' })
+vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'Telescope live grep' })
+vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'Telescope buffers' })
+vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope help tags' })
 
 
 -- ====================
@@ -294,7 +301,7 @@ vim.api.nvim_create_autocmd("FileType", {
 		-- Pagebreak
 		vim.keymap.set('n', '<leader>a', function()
 			vim.api.nvim_put({ '#pagebreak()' }, 'c', true, true)
-		end, { buffer = true, desc = "Insert arrow" })
+		end, { buffer = true, desc = "Insert pagebreak" })
 	end,
 })
 
@@ -308,8 +315,3 @@ vim.api.nvim_create_autocmd("BufEnter", {
 		vim.keymap.set("n", "q", "<cmd>tabclose<cr>", { buffer = event.buf, desc = "Close tab" })
 	end,
 })
--- Autoformat
---
--- ====================
--- 		Injections
--- ====================
