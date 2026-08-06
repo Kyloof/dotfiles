@@ -19,6 +19,13 @@ vim.o.relativenumber = true
 vim.o.shiftwidth = 4
 vim.o.tabstop = 4
 
+local hooks = function(ev)
+	local name, kind = ev.data.spec.name, ev.data.kind
+	if name == 'nvim-treesitter' and (kind == 'update') then
+		vim.cmd('TSUpdate')
+	end
+end
+
 
 -- ====================
 -- 	     Plugins
@@ -64,17 +71,13 @@ vim.pack.add {
 -- 	  Plugin Config
 -- ====================
 
--- ====================
--- 	  	   Core
--- ====================
-
+-- Core
+--
 -- nvim-treesitter
 require("nvim-treesitter").setup {
 	install_dir = vim.fn.stdpath("data") .. "/site",
 	highlight = { enable = true },
 }
-
--- Injections
 
 -- Completion
 --
@@ -266,29 +269,43 @@ vim.keymap.set("n", "gl", vim.diagnostic.open_float)
 vim.keymap.set("n", "<Bslash>", "<cmd>Oil<cr>", { desc = "Open Oil" })
 
 
-
-
-
 -- ====================
 -- 		 Autocmds
 -- ====================
-local augroup = vim.api.nvim_create_augroup("keymaps", { clear = true })
+local keymap_group = vim.api.nvim_create_augroup("keymaps", { clear = true })
 
 vim.api.nvim_create_autocmd("FileType", {
-	group = augroup,
+	group = keymap_group,
 	pattern = "typst",
 	callback = function()
+		-- Linebreak
 		vim.keymap.set('n', '<leader>l', function()
-			-- Parametry nvim_put:
-			-- 1. Tabela z liniami tekstu do wstawienia
-			-- 2. Typ wstawiania: 'l' (nowa linia), 'c' (w miejscu kursora)
-			-- 3. Czy wstawić ZA kursorem (true/false)
-			-- 4. Czy przenieść kursor na koniec wstawionego tekstu (true/false)
+			-- nvim_put:
+			-- 1. Input text
+			-- 2. Insert mode: 'l' (new line), 'c' (at cursor)
+			-- 3. Insert BEHIND cursor (true/false)
+			-- 4. Move cursor to the end of inserted text (true/false)
 			vim.api.nvim_put({ '#line(length: 100%)' }, 'c', true, true)
 		end, { buffer = true, desc = "Insert line" })
+		-- Arrow =>
 		vim.keymap.set('n', '<leader>a', function()
 			vim.api.nvim_put({ '$=>$' }, 'c', true, true)
 		end, { buffer = true, desc = "Insert arrow" })
+		-- Pagebreak
+		vim.keymap.set('n', '<leader>a', function()
+			vim.api.nvim_put({ '#pagebreak()' }, 'c', true, true)
+		end, { buffer = true, desc = "Insert arrow" })
+	end,
+})
+
+vim.api.nvim_create_autocmd("BufEnter", {
+	group = keymap_group,
+	pattern = "*nvim-pack://confirm*",
+	callback = function(event)
+		vim.keymap.set("n", "U", function()
+			vim.pack.update(nil, { force = true })
+		end, { buffer = event.buf, desc = "Force update packages" })
+		vim.keymap.set("n", "q", "<cmd>tabclose<cr>", { buffer = event.buf, desc = "Close tab" })
 	end,
 })
 -- Autoformat
