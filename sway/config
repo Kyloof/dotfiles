@@ -42,8 +42,7 @@ output * bg /home/kyloof/Pictures/burzum.png fill
 #
 # Example configuration:
 #
-output 'Dell Inc. DELL P2212H V0VCM22R5J6M' position 0,0
-output 'Samsung Electric Company Odyssey G5 HK7X801493' position 1920,0 
+output 'eDP-1' position 0,0
 #
 # You can get the names of your outputs by running: swaymsg -t get_outputs
 
@@ -155,16 +154,6 @@ input * {
 #
 # Workspaces:
 #
-    # Assign workspaces to monitors
-    workspace 1 output 'Samsung Electric Company Odyssey G5 HK7X801493'
-    workspace 2 output 'Samsung Electric Company Odyssey G5 HK7X801493'
-    workspace 3 output 'Samsung Electric Company Odyssey G5 HK7X801493'
-    workspace 4 output 'Samsung Electric Company Odyssey G5 HK7X801493'
-    workspace 5 output 'Dell Inc. DELL P2212H V0VCM22R5J6M'
-    workspace 6 output 'Dell Inc. DELL P2212H V0VCM22R5J6M'
-    workspace 7 output 'Dell Inc. DELL P2212H V0VCM22R5J6M'
-    workspace 8 output 'Dell Inc. DELL P2212H V0VCM22R5J6M'
-
     # Switch to workspace
     bindsym $mod+1 workspace number 1
     bindsym $mod+2 workspace number 2

@@ -1,41 +1,27 @@
-// -*- mode: jsonc -*-
 {
-    // "layer": "top", // Waybar at top layer
-    // "position": "bottom", // Waybar position (top|bottom|left|right)
-    "height": 24, // Waybar height (to be removed for auto height)
-    // "width": 1280, // Waybar width
-    "spacing": 4, // Gaps between modules (4px)
-    // Choose the order of the modules
+    "height": 24,
+    "spacing": 4,
     "modules-left": [
         "sway/workspaces",
-		"sway/mode",
+        "sway/mode"
     ],
     "modules-center": [
         "sway/window"
     ],
-    "modules-right": [ "mpris",
+    "modules-right": [
+        "mpris",
         "idle_inhibitor",
-		"pulseaudio",
-        "backlight",
+        "pulseaudio",
+        "battery",
         "clock",
-		"tray"
+        "tray"
     ],
-    // Modules configuration
     "sway/workspaces": {
         "all-outputs": true,
         "warp-on-scroll": false,
         "enable-bar-scroll": true,
         "disable-scroll-wraparound": true,
-        "format": "{icon}",
-        "format-icons": {
-            "1": "",
-            "2": "",
-            "3": "",
-            "4": "",
-            "5": "",
-            "9": "",
-            "10": ""
-        }
+        "format": "{icon}"
     },
     "sway/window": {
         "format": "{title}",
@@ -43,23 +29,28 @@
         "all-outputs": true
     },
     "mpris": {
-		"format": "{status_icon} {dynamic}",
-			"interval": 1,
-			"dynamic-len": 40,
-		"status-icons": {
-			"playing": "▶",
-			"paused": "⏸",
-			"stopped": ""
-		},
-		"dynamic-order": ["artist", "title"],
-		"ignored-players": ["firefox"]
-		},
-		"idle_inhibitor": {
-			"format": "{icon}",
-			"format-icons": {
-				"activated": "",
-				"deactivated": ""
-			}
+        "format": "{status_icon} {dynamic}",
+        "interval": 1,
+        "dynamic-len": 40,
+        "status-icons": {
+            "playing": "▶",
+            "paused": "⏸",
+            "stopped": ""
+        },
+        "dynamic-order": [
+            "artist",
+            "title"
+        ],
+        "ignored-players": [
+            "firefox"
+        ]
+    },
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "",
+            "deactivated": ""
+        }
     },
     "sway/mode": {
         "format": "{}"
@@ -67,20 +58,62 @@
     "sway/scratchpad": {
         "format": "{icon} {count}",
         "show-empty": false,
-        "format-icons": ["", ""],
+        "format-icons": [
+            "",
+            ""
+        ],
         "tooltip": true,
         "tooltip-format": "{app}: {title}"
     },
-	"tray": {
+    "tray": {
         "icon-size": 14,
         "spacing": 10
+    },
+    "battery": {
+        "format": "{capacity}% {icon}",
+        "format-discharging": "{capacity}% {icon}",
+        "format-charging": "{capacity}% {icon}",
+        "format-plugged": " {capacity}%",
+        "format-icons": {
+            "charging": [
+                "󰢜",
+                "󰂆",
+                "󰂇",
+                "󰂈",
+                "󰢝",
+                "󰂉",
+                "󰢞",
+                "󰂊",
+                "󰂋",
+                "󰂅"
+            ],
+            "default": [
+                "󰁺",
+                "󰁻",
+                "󰁼",
+                "󰁽",
+                "󰁾",
+                "󰁿",
+                "󰂀",
+                "󰂁",
+                "󰂂",
+                "󰁹"
+            ]
+        },
+        "format-full": "󰂅 {capacity}%",
+        "tooltip-format-discharging": "{timeTo}",
+        "tooltip-format-charging": "{timeTo}",
+        "interval": 5,
+        "states": {
+            "warning": 20,
+            "critical": 10
+        }
     },
     "clock": {
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
         "format-alt": "{:%Y-%m-%d}"
     },
     "pulseaudio": {
-        // "scroll-step": 1, // %, can be a float
         "format": "{volume}% {icon}",
         "format-bluetooth": "{volume}% {icon} {format_source}",
         "format-bluetooth-muted": " {icon} {format_source}",
@@ -92,8 +125,12 @@
             "phone": "",
             "portable": "",
             "car": "",
-            "default": ["", "", ""]
+            "default": [
+                "",
+                "",
+                ""
+            ]
         },
         "on-click": "pavucontrol"
-    },
+    }
 }
