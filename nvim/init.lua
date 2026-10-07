@@ -62,7 +62,7 @@ vim.pack.add {
 	-- Dev
 	gh("nvim-flutter/flutter-tools.nvim"),
 	gh("jlcrochet/vim-razor"),
-	gh("Aietes/esp32.nvim"),
+	-- gh("Aietes/esp32.nvim"),
 	gh("phelipetls/vim-hugo"),
 	-- Notetaking
 	gh("kaarmu/typst.vim"),
@@ -206,10 +206,10 @@ vim.lsp.config('lua_ls', {
 -- Dev
 --
 -- esp32.nvim
-require("esp32").setup()
+-- require("esp32").setup()
 
-vim.lsp.config("clangd", require("esp32").lsp_config())
-vim.lsp.enable("clangd")
+-- vim.lsp.config("clangd", require("esp32").lsp_config())
+-- vim.lsp.enable("clangd")
 -- Flutter-tools
 require("flutter-tools").setup({})
 
