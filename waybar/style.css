@@ -10,6 +10,7 @@ window#waybar {
     color: #ebdbb2;
     transition-property: background-color;
     transition-duration: .5s;
+    border-radius: 0px;
 }
 
 window#waybar.hidden {
@@ -59,13 +60,18 @@ button:hover {
     border-radius: 0;
 }
 
-#workspaces button:first-child {
-    border-radius: 5px 0 0 5px;
+#workspaces button:first-child:nth-last-child(1) {
+    border-radius: 5px 5px 5px 5px;
 }
 
 #workspaces button:last-child {
     border-radius: 0 5px 5px 0;
 }
+
+#workspaces button:first-child {
+    border-radius: 5px 0 0 5px;
+}
+
 
 #workspaces button:hover {
     color: #d79921;
@@ -83,6 +89,7 @@ button:hover {
 #idle_inhibitor,
 #scratchpad,
 #mode,
+#battery,
 #clock,
 #tray,
 #pulseaudio,
@@ -91,6 +98,7 @@ button:hover {
     padding: 0 10px;
     background-color: #282828;
     color: #ebdbb2;
+    
 }
 
 #mode {

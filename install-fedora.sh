@@ -20,7 +20,7 @@ else
 fi
 
 # Background image
-mv "$DOTFILES_DIR/burzum.png" "$HOME/Pictures/"
+cp "$DOTFILES_DIR/burzum.png" "$HOME/Pictures/"
 
 
 # ===========================
@@ -28,18 +28,18 @@ mv "$DOTFILES_DIR/burzum.png" "$HOME/Pictures/"
 # ===========================
 # 
 # Install nvim
-sudo dnf install nvim
+sudo dnf install nvim -y
 ln -snf "$DOTFILES_DIR/nvim" "$CONFIG_DIR/nvim"
 
 # Install luarocks - REQUIRED for image.nvim
-sudo dnf install luarocks lua5.1 ImageMagick
+sudo dnf install luarocks lua5.1 ImageMagick -y
 luarocks install --lua-version=5.1 --local magick
 
 
 # ===========================
 #       ZSH + Starship
 # ===========================
-sudo dnf install zsh
+sudo dnf install zsh -y
 chsh -s /usr/bin/zsh
 curl -sS https://starship.rs/install.sh | sh
 
@@ -67,11 +67,11 @@ git clone https://github.com/Big-B/swaylock-fancy /tmp/swaylock-fancy && \
 wget -qO- https://git.io/papirus-icon-theme-install | sh
 
 # adwaita black theme
-sudo dnf install adw-gtk3-theme
+sudo dnf install adw-gtk3-theme -y
 
 # GTK3 - dark mode
-sudo dnf install glib2 dconf
-sudo dnf install xdg-desktop-portal-gtk xdg-desktop-portal-wlr
+sudo dnf install glib2 dconf -y
+sudo dnf install xdg-desktop-portal-gtk xdg-desktop-portal-wlr -y
 
 ln -sf "$DOTFILES_DIR/gtk-3.0" "$CONFIG_DIR/gtk-3.0"
 gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
@@ -94,7 +94,7 @@ git clone https://github.com/adi1090x/rofi.git /tmp/rofi && \
 # ===========================
 #            Kitty
 # ===========================
-sudo dnf install kitty
+sudo dnf install kitty -y
 ln -snf "$DOTFILES_DIR/kitty" "$CONFIG_DIR/kitty"
 
 # Dejavu font (my font of choice for terminal work)
@@ -117,4 +117,4 @@ git clone git@github.com:Kyloof/arkona.git "$HOME/.local/share/typst/packages/lo
 # ===========================
 #       Useful Programs
 # ===========================
-sudo dnf install bat cargo
+sudo dnf install bat cargo -y
